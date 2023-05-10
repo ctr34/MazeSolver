@@ -71,6 +71,34 @@ public class MazeSolver {
         } else {
             System.out.println("Embracing the adventure that comes with being stuck in a maze!");
         }
+
+
+        Queue<RoomData> queue = new LinkedList<>();
+        HashMap<String, String> traverseResult = new HashMap<>();
+
+        //Implement BFS
+        while(!queue.isEmpty()){
+            RoomData currentRoomData = queue.poll();
+            traverseResult.put(currentRoomData.getId(), currentRoomData.getContents() + currentRoomData.getEffect());
+
+            List<Path> pathList = currentRoomData.getPaths();
+            System.out.println(pathList);
+
+            for(Path path: pathList){
+                String neighbor = path.getDestination();
+                if(!visited.contains(neighbor)){
+                    String next = path.getDirection();
+                    mazeAssembler.movePlayer(next);
+                    visited.add(neighbor);
+
+                    RoomData roomDataTemp = mazeAssembler.getRoom();
+                    queue.add(roomDataTemp);
+                }
+            }
+
+            RoomData first = queue.peek();
+
+        }
     }
 
 }

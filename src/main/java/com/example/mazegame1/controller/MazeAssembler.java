@@ -1,5 +1,6 @@
 package com.example.mazegame1.controller;
 
+import com.example.mazegame1.dto.Path;
 import com.example.mazegame1.dto.RoomData;
 import com.example.mazegame1.dto.Token;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,6 +9,10 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 
 public class MazeAssembler {
@@ -45,6 +50,8 @@ public class MazeAssembler {
 
         RequestEntity<Void> requestEntity = new RequestEntity<>(headers, HttpMethod.PUT, new URI(urlPlayerMove + "?direction=" + moveDirection));
         restTemplate.exchange(requestEntity, String.class);
+
+
     }
 
 }
